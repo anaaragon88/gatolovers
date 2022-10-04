@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts index{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+<div class="row h-100 justify-content-center align-items-center">
+    <div class="col-10 bg-white rounded my-3 p-5">
+    <center><h1 id="titulo">Posts index</h1></center>
+
+    <table class="table container h-80">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Foto</th>
+                <th>Fecha_post</th>
+                <th>Contenido</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.titulo }}</td>
+                <td>{{ post.foto }}</td>
+                <td>{{ post.fechaPost ? post.fechaPost|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_crud_show', {'id': post.id}) }}"><button class="btn btn-sm btn-primary" type="submit">show</button></a>
+                    <a href="{{ path('app_crud_edit', {'id': post.id}) }}"><button class="btn btn-sm btn-info" type="submit">edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <center><a href="{{ path('app_crud_new') }}"><button class="btn btn-lg btn-info" type="submit">Create new</button></a></center>
+    </div>
+    </div>
+</div>
+{% endblock %}

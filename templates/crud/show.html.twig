@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+<div class="row h-100 justify-content-center align-items-center">
+    <div class="col-10 bg-white rounded my-3 p-5">
+    <h1>Post</h1>
+
+    <table class="table">
+        <a href="{{ path('app_crud_index') }}"><button class="btn btn-sm btn-primary" type="submit">back to list</button></a>
+
+    <a href="{{ path('app_crud_edit', {'id': post.id}) }}"><button class="btn btn-sm btn-info" type="submit">edit</button></a>
+{{ include('crud/_delete_form.html.twig') }}
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ post.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Foto</th>
+                <td>{{ post.foto }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_post</th>
+                <td>{{ post.fechaPost ? post.fechaPost|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ post.contenido }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+</div>
+{% endblock %}

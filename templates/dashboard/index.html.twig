@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Dashboard
+{% endblock %}
+
+{% block body %}
+    {{parent()}} 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 cursor">
+                {% for post in pagination %}
+                <div class="bg-white rounded p-3 my-3"  onclick="window.location.href='{{ path('VerPost',{id:post.id}) }}'">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h3>{{post.titulo}}</h3>
+                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Creado por {{post.nombre}}</strong></div>
+                            <div class=" bg-green"><i class="far fa-clock"></i> <strong>Fecha de publicación: {{ post.fecha_post | date }}</strong></div>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <div class="align-self-center">
+                                <img class="rounded" src="{{ asset('uploads/photos/'~post.foto) }}" width="150px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}
